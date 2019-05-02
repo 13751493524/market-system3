@@ -1,12 +1,8 @@
 package com.cn.redis;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-
-import net.sf.json.JSONObject;
 
 @Service
 public class RedisService {
