@@ -34,7 +34,7 @@ public class UserController extends BaseController{
 		return user;
 	}
 
-	@RequestMapping(value="/{id}/customers", method=RequestMethod.GET)
+	@RequestMapping(value="/{id}/customers", method=RequestMethod.POST)
 	List<Customer> getUserCustomers(@PathVariable Long id) {
 		System.out.println("=======id======>"+id);
 		Customer customer = new Customer();

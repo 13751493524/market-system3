@@ -10,7 +10,8 @@
 密码：<input type="text" id="password"/>
 <button onclick="login()">登录</button>&nbsp;
 <button onclick="logout()">退出</button>&nbsp;
-<button onclick="getUserInfo()">保存</button>
+<button onclick="addUser()">保存</button>
+<button onclick="getUserCustomers()">查询信息</button>
 </body>
 <script type="text/javascript">
 	$(function(){
@@ -25,8 +26,8 @@
 			dataType:"json",
 			data:param,
 			type:"POST",
-			success:function(json){	
-				alert(JSON.stringify(json));
+			success:function(data){	
+				alert(JSON.stringify(data));
 			}
 		});
 	}
@@ -45,9 +46,22 @@
 		});
 	}
 	
-	function getUserInfo(){
+	function addUser(){
 		$.ajax({
 			url:"/users/addUser",
+			contentType: "application/json; charset=utf-8",
+			dataType:"json",
+			data:'{"id":"222","userName":"name11","password":"11111"}',
+			type:"POST",
+			success:function(json){	
+				alert(JSON.stringify(json));
+			}
+		});
+	}
+	
+	function getUserCustomers(){
+		$.ajax({
+			url:"/users/111/customers",
 			contentType: "application/json; charset=utf-8",
 			dataType:"json",
 			data:'{"id":"222","userName":"name11","password":"11111"}',

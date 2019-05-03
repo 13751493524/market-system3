@@ -3,10 +3,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.cn.common.MyConfiguration;
 
 /**
  * @RestController注解相当于@ResponseBody ＋ @Controller合在一起的作用
@@ -31,18 +27,14 @@ public class Application extends SpringBootServletInitializer {
 		return application.sources(Application.class);
 	}
 	public static void main(String[] args) {
-		
 		SpringApplication.run(Application.class, args);
-		
-		ApplicationContext applicationContext =
+		/*ApplicationContext applicationContext =
                 new AnnotationConfigApplicationContext(MyConfiguration.class);
 
-        /*String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         for (String beanName : beanDefinitionNames) {
             System.out.println("beanName: " + beanName);
         }*/
-        
-        System.out.println("===========hread.currentThread().getContextClassLoader()=====>"+Thread.currentThread().getContextClassLoader().getResource(""));
        
 	}
 }

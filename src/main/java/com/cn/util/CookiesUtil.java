@@ -7,6 +7,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
+
 public class CookiesUtil {
 	public static Cookie get(HttpServletRequest request,String name){
 		Map<String, Cookie> cookieMap = readCookieMap(request);
@@ -36,5 +38,12 @@ public class CookiesUtil {
 	public static void setCookies(String key,String value,HttpServletResponse response){
 		Cookie keyCookie = new Cookie(key, value);
 		response.addCookie(keyCookie);
+	}
+	
+	public static void removeCookies(String key,HttpServletRequest request,HttpServletResponse response){
+		Cookie cookie = CookiesUtil.get(request, key);
+    	if(cookie != null && StringUtils.isNotBlank(cookie.getValue())){
+    		CookiesUtil.setCookies(key, null, response);//Çå¿Õcookies
+    	}
 	}
 }
