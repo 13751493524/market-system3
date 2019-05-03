@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,23 +32,17 @@ public class LoginController extends BaseController{
 	@Resource
     private UserService userService;
 	@Resource RedisService redisService;
-	@SuppressWarnings({ "unused", "unused" })
 	@RequestMapping(value="/login")
 	public @ResponseBody Map login(@RequestBody User user,HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException{ 
-		System.out.println("========进来了=====进来了============");
 		Map map = new HashMap();
 		String token = null;
 		Cookie cookie = CookiesUtil.get(request, "sysToken10");
-		//HttpSession session = request.getSession();
 		if(cookie == null || cookie.getValue() == null || "".equals(cookie.getValue())){//说明此电脑之前未登陆
-			//token = (String) session.getAttribute("userToken"+user.getUserName());
 			token = redisService.get("userToken"+user.getUserName());
 			if(token == null || "".equals(token)){//说明没有用户正在登录
 				token = getUuid();
 				User userLogin = userService.login(user);
 				if(userLogin != null){
-					//session.setAttribute("userToken"+user.getUserName(), token);
-					//session.setAttribute(token,userLogin);
 					redisService.put("userToken"+user.getUserName(), token);
 					redisService.hput("userInfo", token, new String(SerializeUtil.serialize(userLogin)));
 					CookiesUtil.setCookies("sysToken10", token, response);
@@ -58,13 +51,9 @@ public class LoginController extends BaseController{
 					map.put("msg", "账户不存在或密码错误！");
 				}
 			}else{//说明有用户正在登录,则逼退之前的用户
-				System.out.println("===========2222==============>");
 				User userLogin = userService.login(user);
 				if(userLogin != null){
 					String newToken = getUuid();
-					//session.setAttribute("userToken"+user.getUserName(),newToken);//移除之前的token,建立新的token
-					//session.removeAttribute(token);
-					//session.setAttribute(newToken, userLogin);
 					redisService.put("userToken"+user.getUserName(),newToken);
 					redisService.hRemove("userInfo", token);
 					System.out.println(new String(SerializeUtil.serialize(userLogin)));
@@ -79,12 +68,9 @@ public class LoginController extends BaseController{
 		}else{//说明此台机器之前登录过
 			token = cookie.getValue();
 			System.out.println("token:"+token);
-			//String reidsToken = (String) session.getAttribute("userToken"+user.getUserName());
 			String reidsToken = redisService.get("userToken"+user.getUserName());
 			System.out.println("reidsToken:"+reidsToken);
 			if(token != null && token.equals(reidsToken)){
-				//System.out.println(redisService.hget("userInfo", token).toString().getBytes());
-				//User userLogin = (User) session.getAttribute(token);
 				System.out.println(redisService.hget("userInfo", token).toString());
 				User userLogin = (User)(SerializeUtil.unserialize(redisService.hget("userInfo", token).toString()));
 				System.out.println("userLogin:"+userLogin);
@@ -110,9 +96,6 @@ public class LoginController extends BaseController{
     	String userToken = "userToken"+user.getUserName();
     	if(StringUtils.isNotBlank(redisService.get(userToken))){
         	CookiesUtil.setCookies("sysToken10", null, response);//清空cookies
-        	//String token = (String) session.getAttribute(userToken);
-        	//session.removeAttribute(token);//删除用户信息
-        	//session.removeAttribute(userToken);//删除缓存的userToken
         	String token = redisService.get(userToken);
         	redisService.remove(token);
         	redisService.remove(userToken);
