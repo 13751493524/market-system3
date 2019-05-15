@@ -5,20 +5,20 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
- * @RestController×¢½âÏàµ±ÓÚ@ResponseBody £« @ControllerºÏÔÚÒ»ÆğµÄ×÷ÓÃ
- * 1) Èç¹ûÖ»ÊÇÊ¹ÓÃ@RestController×¢½âController£¬ÔòControllerÖĞµÄ·½·¨ÎŞ·¨·µ»ØjspÒ³Ãæ£¬»òÕßhtml£¬
- * ÅäÖÃµÄÊÓÍ¼½âÎöÆ÷ InternalResourceViewResolver²»Æğ×÷ÓÃ£¬·µ»ØµÄÄÚÈİ¾ÍÊÇReturn ÀïµÄÄÚÈİ¡£
+ * @RestControlleræ³¨è§£ç›¸å½“äº@ResponseBody ï¼‹ @Controlleråˆåœ¨ä¸€èµ·çš„ä½œç”¨
+ * 1) å¦‚æœåªæ˜¯ä½¿ç”¨@RestControlleræ³¨è§£Controllerï¼Œåˆ™Controllerä¸­çš„æ–¹æ³•æ— æ³•è¿”å›jspé¡µé¢ï¼Œæˆ–è€…htmlï¼Œ
+ * é…ç½®çš„è§†å›¾è§£æå™¨ InternalResourceViewResolverä¸èµ·ä½œç”¨ï¼Œè¿”å›çš„å†…å®¹å°±æ˜¯Return é‡Œçš„å†…å®¹ã€‚
  * 
- * 2) Èç¹ûĞèÒª·µ»Øµ½Ö¸¶¨Ò³Ãæ£¬ÔòĞèÒªÓÃ @ControllerÅäºÏÊÓÍ¼½âÎöÆ÷InternalResourceViewResolver²ÅĞĞ¡£
-    Èç¹ûĞèÒª·µ»ØJSON£¬XML»ò×Ô¶¨ÒåmediaTypeÄÚÈİµ½Ò³Ãæ£¬ÔòĞèÒªÔÚ¶ÔÓ¦µÄ·½·¨ÉÏ¼ÓÉÏ@ResponseBody×¢½â¡£
+ * 2) å¦‚æœéœ€è¦è¿”å›åˆ°æŒ‡å®šé¡µé¢ï¼Œåˆ™éœ€è¦ç”¨ @Controlleré…åˆè§†å›¾è§£æå™¨InternalResourceViewResolveræ‰è¡Œã€‚
+    å¦‚æœéœ€è¦è¿”å›JSONï¼ŒXMLæˆ–è‡ªå®šä¹‰mediaTypeå†…å®¹åˆ°é¡µé¢ï¼Œåˆ™éœ€è¦åœ¨å¯¹åº”çš„æ–¹æ³•ä¸ŠåŠ ä¸Š@ResponseBodyæ³¨è§£ã€‚
  * @author GJB
  *
- *@SpringBootApplication×¢ÊÍÊÇÏàµ±ÓÚÊ¹ÓÃ@Configuration£¬ @EnableAutoConfigurationÒÔ¼°@ComponentScanÓëËûÃÇµÄÄ¬ÈÏÊô
+ *@SpringBootApplicationæ³¨é‡Šæ˜¯ç›¸å½“äºä½¿ç”¨@Configurationï¼Œ @EnableAutoConfigurationä»¥åŠ@ComponentScanä¸ä»–ä»¬çš„é»˜è®¤å±
  *
- *@ComponentScan(value="url")»áÉ¨Ãè@Controller×¢ÊÍÏÂµÄÀà
+ *@ComponentScan(value="url")ä¼šæ‰«æ@Controlleræ³¨é‡Šä¸‹çš„ç±»
  */
-//@RestController//Ïàµ±ÓÚÖ»·µ»Øjson»òÕßxmlÕâĞ©£¬²»ÄÜ·µ»ØÒ»¸öÊÓÍ¼½âÎöÆ÷
-//@EnableAutoConfiguration//Õâ¸ö×¢ÊÍ¸æËßSpring Boot¸ù¾İÄãÌí¼ÓµÄjarÒÀÀµ¹ØÏµ¡°²Â²â¡±ÄãÏëÒªÈçºÎÅäÖÃSpring
+//@RestController//ç›¸å½“äºåªè¿”å›jsonæˆ–è€…xmlè¿™äº›ï¼Œä¸èƒ½è¿”å›ä¸€ä¸ªè§†å›¾è§£æå™¨
+//@EnableAutoConfiguration//è¿™ä¸ªæ³¨é‡Šå‘Šè¯‰Spring Bootæ ¹æ®ä½ æ·»åŠ çš„jarä¾èµ–å…³ç³»â€œçŒœæµ‹â€ä½ æƒ³è¦å¦‚ä½•é…ç½®Spring
 @SpringBootApplication(scanBasePackages = {"com.cn.controller"}) 
 public class Application extends SpringBootServletInitializer {
 	

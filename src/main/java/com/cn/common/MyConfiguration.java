@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 如果发现有一些类不需要自动装配，但是装配了的，则配置不需要自动装配的class
+ * 濡傛灉鍙戠幇鏈変竴浜涚被涓嶉渶瑕佽嚜鍔ㄨ閰嶏紝浣嗘槸瑁呴厤浜嗙殑锛屽垯閰嶇疆涓嶉渶瑕佽嚜鍔ㄨ閰嶇殑class
  * @author GJB
  *
  */

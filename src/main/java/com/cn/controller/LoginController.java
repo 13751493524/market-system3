@@ -55,10 +55,10 @@ public class LoginController extends BaseController{
 				redisService.hput("userInfo", token, new String(SerializeUtil.serialize(userLogin)));
 				CookiesUtil.setCookies("userLoginToken", token, response);
 				map.put("code", "0");
-				map.put("msg", "µÇÂ¼³É¹¦£¡");
+				map.put("msg", "ç™»å½•æˆåŠŸï¼");
 			}else{
 				map.put("code", "-1");
-				map.put("msg", "ÕË»§²»´æÔÚ»òÃÜÂë´íÎó£¡");
+				map.put("msg", "è´¦æˆ·ä¸å­˜åœ¨æˆ–å¯†ç é”™è¯¯ï¼");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,14 +67,14 @@ public class LoginController extends BaseController{
 	}
 	
 	/**
-     * ×¢ÏúµÇÂ¼
+     * ×¢ï¿½ï¿½ï¿½ï¿½Â¼
      * @param session
      * @return
      */
     @RequestMapping(value = "logout",method = RequestMethod.POST)
     public @ResponseBody Map logout(HttpServletRequest request,HttpServletResponse response,HttpSession session,@RequestBody User user){
-    	CookiesUtil.removeCookies("userLoginToken", request, response);//É¾³ıcookies
-    	String userToken = "userToken"+user.getUserName();//Çå¿ÕreidsÉÏµÄ¼ÇÂ¼
+    	CookiesUtil.removeCookies("userLoginToken", request, response);//É¾ï¿½ï¿½cookies
+    	String userToken = "userToken"+user.getUserName();//ï¿½ï¿½ï¿½reidsï¿½ÏµÄ¼ï¿½Â¼
     	if(StringUtils.isNotBlank(redisService.get(userToken))){
         	String token = redisService.get(userToken);
         	redisService.hRemove("userInfo",token);

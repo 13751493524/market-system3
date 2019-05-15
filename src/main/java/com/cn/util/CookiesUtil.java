@@ -20,7 +20,7 @@ public class CookiesUtil {
 	}
 		
 	/**
-	 * 将cookie封装成Map
+	 * 灏哻ookie灏佽鎴怣ap
 	 * @param request
 	 * @return
 	 */
@@ -43,7 +43,7 @@ public class CookiesUtil {
 	public static void removeCookies(String key,HttpServletRequest request,HttpServletResponse response){
 		Cookie cookie = CookiesUtil.get(request, key);
     	if(cookie != null && StringUtils.isNotBlank(cookie.getValue())){
-    		CookiesUtil.setCookies(key, null, response);//清空cookies
+    		CookiesUtil.setCookies(key, null, response);//锟斤拷锟絚ookies
     	}
 	}
 }

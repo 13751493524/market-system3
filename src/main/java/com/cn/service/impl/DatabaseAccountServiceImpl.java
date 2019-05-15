@@ -10,7 +10,7 @@ import com.cn.service.AccountService;
 public class DatabaseAccountServiceImpl implements AccountService{
 	private final RiskAssessor riskAssessor;
 	
-	//@Autowired//有一个构造函数则可以省略
+	//@Autowired//鏈変竴涓瀯閫犲嚱鏁板垯鍙互鐪佺暐
 	public DatabaseAccountServiceImpl(RiskAssessor riskAssessor) {
 		this.riskAssessor = riskAssessor;
 	}
