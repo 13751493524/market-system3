@@ -40,9 +40,9 @@ public class MyFilter implements Filter {
     	res.setContentType("text/html;charset=UTF-8");
 	    int result = checkSession(req,res);
 	    System.out.println(req.getRequestURI());
-	    if(result == -1 && urlCheck(req)){
+	    if(urlCheck(req) && result == -1){
 	    	Map map = new HashMap();
-	    	map.put("msg", "µÇÂ¼³¬Ê±£¡");
+	    	map.put("msg", "ç™»å½•è¶…æ—¶");
 	    	PrintWriter out = res.getWriter();
 	    	out.print(JSONObject.fromObject(map).toString());
 	    	out.flush();
@@ -53,7 +53,7 @@ public class MyFilter implements Filter {
 	}
 	
 	/**
-	 * ²»ĞèÒªÀ¹½ØµÄµØÖ·
+	 * è®¾ç½®ä¸éœ€è¦æ‹¦æˆªçš„è·¯å¾„
 	 * @param req
 	 * @return
 	 */
@@ -74,7 +74,7 @@ public class MyFilter implements Filter {
 				}
 			}
 		}
-		CookiesUtil.removeCookies("userLoginToken", request, response);//É¾³ıcookies
+		CookiesUtil.removeCookies("userLoginToken", request, response);//É¾ï¿½ï¿½cookies
 		return -1;
 	}
 
