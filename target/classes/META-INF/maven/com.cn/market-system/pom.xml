@@ -86,6 +86,14 @@
 		<version>2.2.3</version>  
 		<classifier>jdk15</classifier><!-- jdk版本 -->  
 	</dependency> 
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-indexer -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-indexer</artifactId>
+    <scope>optional</scope>
+</dependency>
+
+
   </dependencies>
   <build>
     <finalName>market-system</finalName>
