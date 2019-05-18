@@ -23,12 +23,15 @@ import com.cn.entity.User;
 import com.cn.redis.RedisService;
 import com.cn.util.CookiesUtil;
 import com.cn.util.SerializeUtil;
+import com.cn.util.UrlUtils;
 
 import net.sf.json.JSONObject;
 
 @Component
-@WebFilter(filterName = "test", urlPatterns = "/*")
-public class MyFilter implements Filter {
+@WebFilter(filterName = "loginFilter", urlPatterns = "/*")
+public class LoginFilter implements Filter {
+	//设置不需要拦截的地址
+	private final String[] nocheckUrls = {"/","/login/*","/js/*","*/*.ico","*/*.jpg","*/*.png"}; 
 	@Resource 
 	RedisService redisService;
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
@@ -38,9 +41,9 @@ public class MyFilter implements Filter {
 	    req.setCharacterEncoding("utf-8");
     	res.setCharacterEncoding("utf-8");
     	res.setContentType("text/html;charset=UTF-8");
-	    int result = checkSession(req,res);
-	    System.out.println(req.getRequestURI());
-	    if(urlCheck(req) && result == -1){
+	    if(urlCheck(req)){
+	    	filterChain.doFilter(request, response);
+	    }else if(checkSession(req,res) == -1){
 	    	Map map = new HashMap();
 	    	map.put("msg", "登录超时");
 	    	PrintWriter out = res.getWriter();
@@ -59,7 +62,12 @@ public class MyFilter implements Filter {
 	 */
 	private boolean urlCheck(HttpServletRequest req){
 		String uri = req.getRequestURI();
-		return !"/".equals((uri)) && !"/login".equals(uri);
+		for(int i=0;i<nocheckUrls.length;i++){
+			if(UrlUtils.matching(nocheckUrls[i], uri)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private int checkSession(HttpServletRequest request,HttpServletResponse response){

@@ -39,7 +39,7 @@ public class UserController extends BaseController{
 		System.out.println("=======id======>"+id);
 		Customer customer = new Customer();
 		List list = new ArrayList();
-		customer.setId(1L);
+		customer.setId(null);
 		list.add(customer);
 		return list;
 	}
@@ -52,10 +52,10 @@ public class UserController extends BaseController{
 		synchronized (sessionUser) {
 			User existUser = userService.getUserByUserName(user);
 			if(existUser != null){
-				map.put("msg", "该用户已存在！");
+				map.put("msg", "璇ョ敤鎴峰凡瀛樺湪");
 			}else{
 				userService.addUser(user);
-				map.put("msg", "注册成功！");
+				map.put("msg", "娣诲姞鎴愬姛");
 			}
 		}
 		return map;
