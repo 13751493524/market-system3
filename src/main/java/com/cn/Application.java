@@ -1,8 +1,16 @@
 package com.cn;
+import java.util.EnumSet;
+
+import javax.servlet.DispatcherType;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+
+import com.cn.controller.LoginFilter;
 
 /**
  * @RestController注解相当于@ResponseBody ＋ @Controller合在一起的作用
@@ -19,7 +27,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  */
 //@RestController//相当于只返回json或者xml这些，不能返回一个视图解析器
 //@EnableAutoConfiguration//这个注释告诉Spring Boot根据你添加的jar依赖关系“猜测”你想要如何配置Spring
-@SpringBootApplication(scanBasePackages = {"com.cn.controller"}) 
+@SpringBootApplication(scanBasePackages = {"com.cn"}) 
 public class Application extends SpringBootServletInitializer {
 	
 	@Override
@@ -36,5 +44,16 @@ public class Application extends SpringBootServletInitializer {
             System.out.println("beanName: " + beanName);
         }*/
        
+	}
+	/**
+	 * 地址拦截器
+	 * @return
+	 */
+	@Bean
+	public FilterRegistrationBean myFilter() {
+		FilterRegistrationBean registration = new FilterRegistrationBean();
+		registration.setFilter(new LoginFilter());
+		registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
+		return registration;
 	}
 }

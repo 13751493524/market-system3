@@ -29,7 +29,7 @@ public class UrlUtils {
 	}
 	
 	public static void main(String[] args) {
-		boolean flag = UrlUtils.matching("*/*.ico", "/favicon.ico");
+		boolean flag = UrlUtils.matching("/login/*", "/login");
 		System.out.println(flag);
 	}
 }

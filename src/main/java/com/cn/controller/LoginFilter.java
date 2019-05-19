@@ -27,11 +27,11 @@ import com.cn.util.UrlUtils;
 
 import net.sf.json.JSONObject;
 
-@Component
-@WebFilter(filterName = "loginFilter", urlPatterns = "/*")
+//@Component
+//@WebFilter(filterName = "loginFilter", urlPatterns = "/*")
 public class LoginFilter implements Filter {
 	//设置不需要拦截的地址
-	private final String[] nocheckUrls = {"/","/login/*","/js/*","*/*.ico","*/*.jpg","*/*.png"}; 
+	private final String[] nocheckUrls = {"/","/login","/login/*","/js/*","*/*.ico","*/*.jpg","*/*.png"}; 
 	@Resource 
 	RedisService redisService;
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
@@ -41,9 +41,10 @@ public class LoginFilter implements Filter {
 	    req.setCharacterEncoding("utf-8");
     	res.setCharacterEncoding("utf-8");
     	res.setContentType("text/html;charset=UTF-8");
+    	int result = checkSession(req,res);
 	    if(urlCheck(req)){
 	    	filterChain.doFilter(request, response);
-	    }else if(checkSession(req,res) == -1){
+	    }else if(result == -1){
 	    	Map map = new HashMap();
 	    	map.put("msg", "登录超时");
 	    	PrintWriter out = res.getWriter();
@@ -82,7 +83,7 @@ public class LoginFilter implements Filter {
 				}
 			}
 		}
-		CookiesUtil.removeCookies("userLoginToken", request, response);//ɾ��cookies
+		CookiesUtil.removeCookies("userLoginToken", request, response);//删除cookies
 		return -1;
 	}
 
