@@ -8,8 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 
+import com.cn.common.MyConfiguration;
 import com.cn.controller.LoginFilter;
 
 /**
@@ -28,14 +31,14 @@ import com.cn.controller.LoginFilter;
 //@RestController//相当于只返回json或者xml这些，不能返回一个视图解析器
 //@EnableAutoConfiguration//这个注释告诉Spring Boot根据你添加的jar依赖关系“猜测”你想要如何配置Spring
 @SpringBootApplication(scanBasePackages = {"com.cn"}) 
-public class Application extends SpringBootServletInitializer {
+public class MarketSystemApplication extends SpringBootServletInitializer {
 	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(Application.class);
+		return application.sources(MarketSystemApplication.class);
 	}
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(MarketSystemApplication.class, args);
 		/*ApplicationContext applicationContext =
                 new AnnotationConfigApplicationContext(MyConfiguration.class);
 
@@ -46,7 +49,7 @@ public class Application extends SpringBootServletInitializer {
        
 	}
 	/**
-	 * 地址拦截器
+	 * 地址拦截以及登陆拦截，后缀拦截
 	 * @return
 	 */
 	@Bean

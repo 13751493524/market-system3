@@ -30,8 +30,8 @@ import net.sf.json.JSONObject;
 //@Component
 //@WebFilter(filterName = "loginFilter", urlPatterns = "/*")
 public class LoginFilter implements Filter {
-	//设置不需要拦截的地址
-	private final String[] nocheckUrls = {"/","/login","/login/*","/js/*","*/*.ico","*/*.jpg","*/*.png"}; 
+	//设置不需要拦截的地址或者资源
+	private final String[] nocheckUrls = {"/","/index.html","/login","/login/*","/js/*","*/*.ico","*/*.jpg","*/*.png"}; 
 	@Resource 
 	RedisService redisService;
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
@@ -42,6 +42,7 @@ public class LoginFilter implements Filter {
     	res.setCharacterEncoding("utf-8");
     	res.setContentType("text/html;charset=UTF-8");
     	int result = checkSession(req,res);
+    	
 	    if(urlCheck(req)){
 	    	filterChain.doFilter(request, response);
 	    }else if(result == -1){

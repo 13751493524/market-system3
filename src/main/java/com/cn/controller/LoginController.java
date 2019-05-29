@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.common.contorller.BaseController;
 import com.cn.entity.User;
-import com.cn.redis.RedisService;
 import com.cn.service.UserService;
 import com.cn.util.CookiesUtil;
 import com.cn.util.SerializeUtil;

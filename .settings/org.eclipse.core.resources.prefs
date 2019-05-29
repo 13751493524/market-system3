@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-encoding//src/main/java/com/cn/Application.java=UTF-8
+encoding//src/main/java/com/cn/MarketSystemApplication.java=UTF-8
 encoding//src/main/java/com/cn/common/MyConfiguration.java=UTF-8
 encoding//src/main/java/com/cn/controller/LoginController.java=UTF-8
 encoding//src/main/java/com/cn/service/impl/DatabaseAccountServiceImpl.java=UTF-8
